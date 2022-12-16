@@ -47,7 +47,8 @@ public class Main {
                 "3. Best fit\n"+
                 "4. exit");
         int choice = 0;
-
+        // use the same testcases on all the algorithms
+        // as in the assignment
         while(choice != 4) {
             System.out.println("\nSelect Policy: ");
             choice = sc.nextInt();
@@ -61,15 +62,14 @@ public class Main {
 
     }
     public static void FirstFitPolicy(ArrayList<Partition> partition, ArrayList<Process> process){
-        Integer no_of_partition = partition.size();
-        int i = 0;
-        allocateProcess(partition, process, no_of_partition, i);
+        int no_of_partition = partition.size();
+        no_of_partition = allocateProcess(partition, process, no_of_partition);
         System.out.println("\nDo you want to compact? 1.yes 2.no");
         Scanner sc = new Scanner(System.in);
         int choice;
         choice = sc.nextInt();
         if(choice == 1){
-            i = 0;
+            int i = 0;
             int externalFragment = 0;
             while(i < partition.size()){
                 if(partition.get(i).processName.equals("")){
@@ -81,12 +81,12 @@ public class Main {
                 }
             }
             partition.add(new Partition(no_of_partition++,externalFragment));
-            i = 0;
-            allocateProcess(partition, process, no_of_partition, i);
+            allocateProcess(partition, process, no_of_partition);
         }
     }
 
-    private static void allocateProcess(ArrayList<Partition> partition, ArrayList<Process> unallocated_process, Integer no_of_partition, int i) {
+    private static int allocateProcess(ArrayList<Partition> partition, ArrayList<Process> unallocated_process, int no_of_partition) {
+        int i = 0;
         while(i < unallocated_process.size()){
             boolean found = false;
             for(int j = 0; j < partition.size(); j++){
@@ -115,6 +115,7 @@ public class Main {
         for(int j = 0; j < unallocated_process.size(); j++){
             System.out.println("Process " + unallocated_process.get(j).process_name + " can not be allocated");
         }
+        return no_of_partition;
     }
 
 }
