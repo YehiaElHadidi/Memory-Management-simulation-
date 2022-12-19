@@ -39,35 +39,37 @@ public class Main {
             process_size = sc.nextInt();
             process.add(new Process(process_name,process_size));
         }
-        System.out.println("Select the policy you want to apply:\n" +
-                "1. First fit\n" +
-                "2. Worst fit\n" +
-                "3. Best fit\n"+
-                "4. exit");
+        System.out.println("""
+                Select the policy you want to apply:
+                1. First fit
+                2. Best fit
+                3. Worst fit
+                4. exit"""
+        );
         // use the same testcases on all the algorithms
         // as in the assignment
         System.out.println("\nSelect Policy: ");
         int choice = sc.nextInt();
+
         while(choice != 4) {
             ArrayList<Partition> partitionCopy = new ArrayList<>(partition);
             ArrayList<Process> processCopy = new ArrayList<>(process);
-
             if (choice == 1) {
-                policyAlgo= new FirstFit();
+                policyAlgo= new FirstFit(partitionCopy,processCopy);
             }
             else if(choice==2){
-                policyAlgo=new BestFit();
+                policyAlgo=new BestFit(partitionCopy,processCopy);
             }
-            policyAlgo.executePolicy(partitionCopy,processCopy);
-            System.out.println("Select the policy you want to apply:\n" +
-                    "1. First fit\n" +
-                    "2. Worst fit\n" +
-                    "3. Best fit\n"+
-                    "4. exit");
+            policyAlgo.executePolicy();
+            System.out.println("""
+                    Select the policy you want to apply:
+                    1. First fit
+                    2. Best fit
+                    3. Worst fit
+                    4. exit"""
+            );
             System.out.println("\nSelect Policy: ");
             choice = sc.nextInt();
         }
-
     }
-
 }
