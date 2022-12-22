@@ -53,8 +53,8 @@ public class Main {
 
         while(choice != 4) {
             ArrayList<Partition> partitionCopy = new ArrayList<>();
-            for (int i = 0; i < partition.size(); i++){
-                partitionCopy.add(new Partition(partition.get(i).partitionName,partition.get(i).partitionSize));
+            for (Partition value : partition) {
+                partitionCopy.add(new Partition(value.partitionName, value.partitionSize));
             }
             if (choice == 1) {
                 policyAlgo= new FirstFit(partitionCopy,process);
