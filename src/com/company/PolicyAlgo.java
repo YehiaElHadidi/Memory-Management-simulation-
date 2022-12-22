@@ -4,14 +4,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class PolicyAlgo {
-    ArrayList<Partition> partitions= new ArrayList<>();
-    ArrayList<Process> process=new ArrayList<>();
+    ArrayList<Partition> partitions = new ArrayList<>();
+    ArrayList<Process> process = new ArrayList<>();
 
-    PolicyAlgo(ArrayList<Partition> partitions, ArrayList<Process> process){
+    PolicyAlgo(ArrayList<Partition> partitions, ArrayList<Process> process) {
         this.partitions.addAll(partitions);
         this.process.addAll(process);
     }
-    abstract int allocateProcess( int no_of_partition);
+
+    abstract int allocateProcess(int no_of_partition);
+
     public void executePolicy() {
         int no_of_partition = partitions.size();
         no_of_partition = allocateProcess(no_of_partition);
@@ -25,7 +27,7 @@ public abstract class PolicyAlgo {
     void compaction(int no_of_partition) {
         int i = 0;
         int externalFragment = 0;
-        while (i < partitions.size()){
+        while (i < partitions.size()) {
             if (partitions.get(i).processName.equals("")) {
                 externalFragment += partitions.get(i).partitionSize;
                 partitions.remove(i);
@@ -36,7 +38,8 @@ public abstract class PolicyAlgo {
         partitions.add(new Partition(no_of_partition++, externalFragment));
         allocateProcess(no_of_partition);
     }
-    void printMemory(){
+
+    void printMemory() {
         for (Partition value : partitions) {
             System.out.print("Partition " + value.partitionName + " (" + value.partitionSize + ") => ");
             if (!value.processName.equals(""))

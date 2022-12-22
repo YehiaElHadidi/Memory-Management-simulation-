@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Main {
     static PolicyAlgo policyAlgo;
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         ArrayList<Partition> partition = new ArrayList<>();
@@ -47,20 +48,19 @@ public class Main {
                 4. exit"""
         );
         // use the same testcases on all the algorithms
-        // zy md el dr 3ayz fa el assignment
+        // zy maa el dr 3ayz fa el assignment
         System.out.println("\nSelect Policy: ");
         int choice = sc.nextInt();
 
-        while(choice != 4) {
+        while (choice != 4) {
             ArrayList<Partition> partitionCopy = new ArrayList<>();
             for (Partition value : partition) {
                 partitionCopy.add(new Partition(value.partitionName, value.partitionSize));
             }
             if (choice == 1) {
-                policyAlgo= new FirstFit(partitionCopy,process);
-            }
-            else if(choice==2){
-                policyAlgo=new BestFit(partitionCopy,process);
+                policyAlgo = new FirstFit(partitionCopy, process);
+            } else if (choice == 2) {
+                policyAlgo = new BestFit(partitionCopy, process);
             }
             policyAlgo.executePolicy();
             System.out.println("""
