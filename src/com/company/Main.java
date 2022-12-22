@@ -62,6 +62,9 @@ public class Main {
             } else if (choice == 2) {
                 policyAlgo = new BestFit(partitionCopy, process);
             }
+            else if (choice == 3) {
+                policyAlgo = new WorstFit(partitionCopy, process);
+            }
             policyAlgo.executePolicy();
             System.out.println("""
                     Select the policy you want to apply:
