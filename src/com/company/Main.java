@@ -47,8 +47,6 @@ public class Main {
                 3. Worst fit
                 4. exit"""
         );
-        // use the same testcases on all the algorithms
-        // zy maa el dr 3ayz fa el assignment
         System.out.println("\nSelect Policy: ");
         int choice = sc.nextInt();
 
